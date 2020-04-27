@@ -13,9 +13,10 @@
     "jasmine": "^3.5.0",
     "rxjs": "^6.5.5",
     "ts-node": "^8.9.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "jasmine-ts": "^0.3.0"
   },
   "devDependencies": {
-    "jasmine-ts": "^0.3.0"
+  
   }
 }
