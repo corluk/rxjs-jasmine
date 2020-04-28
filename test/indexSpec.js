@@ -18,4 +18,44 @@ describe("test testobservable with js " , ()=>{
 
 
     })
+    it("should testobservable receives error ", (done)=>{
+
+        let ob$ = rx.of(1) 
+        ob$ = ob$.pipe(ops.map(v=> {
+                if(v ==1) throw new Error() 
+                    return  v + 1 
+                })) 
+        let subsFn = (v )=>{
+
+            expect(v).to.be.eq(2)
+        }
+     testObservable(ob$,subsFn,done , {
+            onError: (e) => {
+            
+                expect(e).not.to.be.null
+ 
+            }
+        }) 
+    })    
+        
+    it("should testobservable receives error and complete ", (done)=>{
+
+        let scoped = 1 
+        let ob$ = rx.of(1) 
+        ob$ = ob$.pipe(ops.map(v=> {
+                  
+                    return  v + 1 
+                })) 
+        let subsFn = (v )=>{
+
+              
+        }
+  
+        testObservable(ob$,subsFn,done , {
+             
+            onComplete : ()=>{
+                expect(scoped).to.be.eq(1)
+            }
+        })
+    })  
 })

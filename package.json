@@ -5,7 +5,15 @@
   "repository": "https://github.com/corluk/rxjs-jasmine.git",
   "author": "osmancorluk <corluk@hotmail.com>",
   "license": "MIT",
+  "scripts": {
+    "pre:test" : "tsc" , 
+    "jasmine-ts" :  "node_modules/.bin/jasmine-ts" , 
+    "test" : "yarn run pre:test && yarn run jasmine-ts"
+  },
   "dependencies": {
+   
+  },
+  "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/jasmine": "^3.5.10",
     "@types/node": "^13.13.4",
@@ -15,8 +23,5 @@
     "ts-node": "^8.9.1",
     "typescript": "^3.8.3",
     "jasmine-ts": "^0.3.0"
-  },
-  "devDependencies": {
-  
   }
 }
