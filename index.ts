@@ -6,14 +6,19 @@ interface DoneFn extends Function {
     /** fails the spec and indicates that it has completed. If the message is an Error, Error.message is used */
     fail: (message?: Error | string) => void;
 }
-interface Events {
+interface Events<T> {
     onError?:  (e:Error) => void ,
     onComplete? :  () =>  void 
-
+    onSubscribe : (value:T) => void 
 }
-export const testObservable =    <T>(observable : Observable<T> , subscribeFn :  (value: T) => void ,done : DoneFn , events?:Events  ) => {
+export const testObservable =    <T>(observable : Observable<T> , events:Events<T> ,done : DoneFn) => {
 
-    observable.subscribe(subscribeFn,(e:Error)=> { 
+    observable.subscribe((value :T)=>{
+        
+        events.onSubscribe.call(null,value)
+        done()
+
+    },(e:Error)=> { 
          
         if(events?.onError) events.onError(e)
 

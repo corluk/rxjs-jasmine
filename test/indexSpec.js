@@ -14,7 +14,7 @@ describe("test testobservable with js " , ()=>{
             expect(v).to.be.eq(2)
             
         }
-        testObservable(ob$,subs,done)
+        testObservable(ob$,{onSubscribe:subs},done)
 
 
     })
@@ -29,13 +29,14 @@ describe("test testobservable with js " , ()=>{
 
             expect(v).to.be.eq(2)
         }
-     testObservable(ob$,subsFn,done , {
+     testObservable(ob$, {
+            onSubscribe : subsFn,
             onError: (e) => {
             
                 expect(e).not.to.be.null
  
             }
-        }) 
+        },done) 
     })    
         
     it("should testobservable receives error and complete ", (done)=>{
@@ -51,11 +52,11 @@ describe("test testobservable with js " , ()=>{
               
         }
   
-        testObservable(ob$,subsFn,done , {
-             
+        testObservable(ob$, {
+             onSubscribe : subsFn , 
             onComplete : ()=>{
                 expect(scoped).to.be.eq(1)
             }
-        })
+        },done )
     })  
 })
