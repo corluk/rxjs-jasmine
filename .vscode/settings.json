@@ -1,9 +1,5 @@
 {
-    "jasmineExplorer.config": "./spec/support/jasmine.json" ,
-    "jasmineExplorer.nodeArgv": [
-        "--require",
-        "ts-node/register"
-        
-    ]
+    "mocha.requires": ["ts-node/register"] , 
+    "mocha.files.glob": "test/**/*.spec.ts" , 
  
 }

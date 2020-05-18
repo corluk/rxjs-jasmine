@@ -1,31 +1,47 @@
  
 import {Observable} from "rxjs"
-interface DoneFn extends Function {
-    (): void;
+import { Done } from "mocha"
 
-    /** fails the spec and indicates that it has completed. If the message is an Error, Error.message is used */
-    fail: (message?: Error | string) => void;
-}
+ 
 interface Events<T> {
     onError?:  (e:Error) => void ,
     onComplete? :  () =>  void 
     onSubscribe : (value:T) => void 
 }
-export const testObservable =    <T>(observable : Observable<T> , events:Events<T> ,done : DoneFn) => {
 
+class DoneManager {
+     isCalled = false 
+    done : Done   
+    constructor(done:Done) {
+            this.done = done
+    }
+    public callDone ( ){
+
+        if(!this.isCalled){
+            this.done.call(null)
+            this.isCalled = true 
+        }
+    }
+}
+ 
+
+export const testObservable =    <T>(observable : Observable<T> , events:Events<T> ,done : Done) => {
+    let doneManager = new DoneManager(done)
     observable.subscribe((value :T)=>{
         
         events.onSubscribe.call(null,value)
-        done()
+        doneManager.callDone()
 
     },(e:Error)=> { 
          
         if(events?.onError) events.onError(e)
 
         
-        done()
+        doneManager.callDone()
+
     },()=>{
             if(events?.onComplete) events.onComplete()
-            done()
+            doneManager.callDone()
+
     })
 }

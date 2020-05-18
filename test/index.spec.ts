@@ -1,4 +1,4 @@
-import { testObservable } from './../index';
+import { testObservable } from '../index';
 import { Observable , of  } from "rxjs" 
 import {map} from "rxjs/operators"
 import {expect} from "chai"
