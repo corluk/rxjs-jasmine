@@ -1,10 +1,12 @@
-# rxjs-jasmine
+# rxjs-utils 
 Simple function for easier rxjs coding. 
-For test : 
+
+
+# For test : 
 testObservable ( obs$, {
 onSubscribe: (value: T) => void ,
 onError : (err) => void ,
 onComplete : () => void } , done)
 
-Rxjs merges with Promises so that we can use await 
+# Rxjs merges with Promises so that we can use await 
 sink<T>(obs) => Array<T>
