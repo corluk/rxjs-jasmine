@@ -1,13 +1,13 @@
 {
  "name": "rxjs-jasmine",
- "version": "1.1.1",
+ "version": "1.1.2",
  "main": "index.js",
  "repository": "https://github.com/corluk/rxjs-jasmine.git",
  "author": "osmancorluk <corluk@hotmail.com>",
  "license": "MIT",
  "scripts": {
   "pre:test": "tsc",
-  "coverage" : "nyc --reporter=lcov --reporter=text-summary yarn test "  , 
+  "coverage": "nyc --reporter=lcov --reporter=text-summary yarn test ",
   "test": "mocha -r ts-node/register test/**/*.spec.ts",
   "build": "yarn run pre:test & yarn run test"
  },
