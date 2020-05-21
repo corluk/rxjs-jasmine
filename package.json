@@ -1,5 +1,5 @@
 {
- "name": "rxjs-jasmine",
+ "name": "rxjs-utils",
  "version": "1.2.0",
  "main": "index.js",
  "repository": "https://github.com/corluk/rxjs-jasmine.git",
