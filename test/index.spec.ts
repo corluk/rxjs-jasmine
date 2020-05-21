@@ -1,8 +1,9 @@
-import { testObservable } from '../index';
-import { Observable , of  } from "rxjs" 
-import {map} from "rxjs/operators"
+import { testObservable, sink } from '../index';
+import {  of  } from "rxjs" 
+import {map  } from "rxjs/operators"
 import {expect} from "chai"
-
+ 
+ 
 describe("test observable test in typescript" , ()=>{
 
     it("should testobservable receives observable of 1 piped to 2", (done)=>{
@@ -59,6 +60,17 @@ describe("test observable test in typescript" , ()=>{
             }
         },done)
     })  
+
+
+    it("should sink returns the same emitted values",  async ()=>{
+
+     
+      let obs =   of(1,2,3)
+      
+     let   result =  await sink(obs)
+      expect(result.length).to.be.eq(3)
     
+    }) 
+ 
 
 })

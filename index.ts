@@ -1,5 +1,5 @@
  
-import {Observable} from "rxjs"
+import {Observable, observable} from "rxjs"
 import { Done } from "mocha"
 
  
@@ -44,4 +44,21 @@ export const testObservable =    <T>(observable : Observable<T> , events:Events<
             doneManager.callDone()
 
     })
+}
+
+
+export const  sink = async <E>(observable  : Observable<E>) : Promise<E[]> => {
+    let ref : E[] = []
+   
+ 
+        return new Promise((resolve,reject)=>{
+            observable.subscribe(result =>{
+                
+                ref.push(result)}, err  => console.debug(`error ${err.message }`), ()=> resolve(ref) )
+        })
+
+        
+    
+        
+        
 }
